@@ -1,0 +1,116 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<style type="text/css">
+	.image-container img{
+        border: 1px;
+        border-radius:50%;
+		max-width: 250px;
+		height: auto;
+	}
+
+	body{
+		background-image: url('/static/image/backg.jpg');
+		background-size:cover;
+		background-attachment: fixed;
+	}
+	.field-heading{
+		color: var(--secondary-text-color);
+	}
+	.icon-container:hover {
+		opacity: 0.3;
+		cursor: pointer;
+	}
+	.friends-icon{
+		color: #4287f5;
+		font-size: 40px;
+	}
+	.person-add-icon{
+		color: #4287f5;
+		font-size: 40px;
+	}
+	.message-text{
+		font-weight: 500;
+		color: black;
+	}
+	.message-btn{
+		background-color: #ffffff;
+		border-color: #000000;
+		border: 2px solid;
+		color: #000;
+		font-weight: 500;
+	}
+	.message-btn:hover {
+		background-color: #e20c0c;
+		border-color: #050000;
+	}
+	.dropdown-toggle::after { 
+		content: none; 
+	}
+	.card{
+		border: 2px solid;
+		border-radius: 12px;
+	}
+	.material-icons{
+		font-size: 30px;
+	}
+	.material-icons:hover{
+		cursor: pointer;
+	}
+	
+	.message-btn-text{
+		font-weight: 500;
+	}
+
+	.beauty {
+		border: 3px solid;
+		border-color: crimson;
+		background-color: #ece4e4d7 
+
+	}
+</style>
+
+<div class="container-fluid body">
+	<div class="d-flex flex-row justify-content-center flex-wrap align-items-start">
+		<div class="card profile-card m-2">
+		  <div class="card-body shadow-lg">
+		  	<div class="d-flex flex-column justify-content-center p-4">
+		  		<div class="image-container mx-auto mb-4">
+		  			<img class="d-block border border-dark rounded-circle img-fluid mx-auto profile-image" alt="codingwithmitch logo" id="id_profile_image" src="{{profile_image}}">
+		  		</div>
+		  		<p class="mt-4 mb-1 field-heading">Email:</p>
+		  		{%  if is_self %}
+		  			<h5 class='beauty'>{{email}}</h5>
+		  		{% else %}
+		  			{% if hide_email %}
+			  			<h5 class='beauty'>**********</h5>
+			  		{% else %}
+			  			<h5 class='beauty'>{{email}}</h5>
+			  		{% endif %}
+			  	{% endif %}
+		  		<p class="mt-4 mb-1 field-heading">Username:</p>
+		  		<h5 class='beauty'>{{username}}</h5>
+		  	</div>
+		  </div>
+		</div>		
+		{% if is_self %}
+			<div class="d-flex flex-column justify-content-center p-3">
+				<button class="btn btn-secondary dropdown-toggle message-btn" type="button" id="id_message" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				Messages
+				</button>
+			</div>
+		{% endif %}		
+	</div>
+</div>
+
+
+<script>
+    document.querySelector('#id_message').onclick = function(e) {
+        window.location.pathname = '/select_chat' + '/';
+    };
+</script>
+
+{% endblock content %}
+

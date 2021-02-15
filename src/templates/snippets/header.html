@@ -1,0 +1,105 @@
+{% load static %}
+
+
+
+
+<div class="d-flex flex-column flex-lg-row p-3 px-md-4 mb-3 bg-white border-bottom shadow-lg">
+  <!--Screen-->
+  <div class="d-none d-md-flex flex-row my-auto flex-grow-1 align-items-center">
+    <div>
+      <span class="material-icons mr-2 pb-2">home</span>
+    </div>
+    <div>
+      <h5 class="mr-4 font-weight-lighter justify-content-start">
+        <a class="p-2 text-dark" href='{% url "home" %}'>Home </a>
+      </h5>
+    </div>
+    <!-- Search form -->
+
+    <form class="search-bar justify-content-start" onsubmit="return executeQuery();">
+			<input type="text" class="form-control" name="q" id="id_q_large" placeholder="Search...">
+		</form>
+
+    <div class="flex-row-reverse d-flex flex-grow-1">
+      {% if request.user.is_authenticated %}
+      <div class="btn-group dropleft mr-4">
+        <div class="d-flex flex-row">
+          <button
+            class="btn-outline-primary btn dropleft"
+            type="button"
+            id="dropdownMenuButton"
+            data-toggle="dropdown"
+          >
+            Account
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" href="{% url 'account:view' user_id=request.user.id %}">Profile</a>
+            <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
+          </div>
+        </div>
+      </div>
+      {% else %}
+      <a class="m-1 text-dark btn btn-outline-primary" style="width: 85px" href='{% url "login" %}'
+        >Login</a>
+      <a class="m-1 text-dark btn btn-outline-primary" href='{% url "register"%}'>Register</a>
+      {% endif %}
+    </div>
+  </div>
+
+  <!--Mobal Screen -->
+
+  <div class="d-flex d-md-none flex-column my-auto align-items-center">
+    <div class="flex-row d-flex align-items-start">
+      <span class="material-icons mr-0 pb-2">home</span>
+      <h5 class="mr-4 font-weight-lighter">
+        <a class="p-2 text-dark" href='{% url "home" %}'>Home </a>
+      </h5>
+    </div>
+    <div>
+      <form class="search-bar justify-content-start" onsubmit="return executeQuery();">
+        <input type="text" class="form-control" name="q" id="id_q_small" placeholder="Search...">
+      </form>
+    </div>
+    <div class="flex-row-reverse d-flex flex-grow-1">
+      {% if request.user.is_authenticated %}
+      <div class="btn-group dropleft mr-4">
+        <div class="d-flex flex-column">
+          <button
+            class="btn-outline-primary btn dropleft"
+            type="button"
+            id="dropdownMenuButton"
+            data-toggle="dropdown"
+          >
+            Account
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" href="{% url 'account:view' user_id=request.user.id %}"
+              >Profile</a
+            >
+            <a class="dropdown-item" href="#">Logout</a>
+          </div>
+        </div>
+      </div>
+      {% else %}
+      <a class="m-1 text-dark btn btn-outline-primary" style="width: 85px" href='{% url "login" %}'
+        >Login</a
+      >
+      <a class="m-1 text-dark btn btn-outline-primary" href='{% url "register" %}'>Register</a>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+	function executeQuery() {
+		let query = ""
+		query = document.getElementById('id_q_small').value;
+		if (query == ""){
+			query = document.getElementById('id_q_large').value;
+		}
+	    window.location.replace("{% url 'search' %}?q=" + query)
+	    return false
+	}
+</script>
+
+

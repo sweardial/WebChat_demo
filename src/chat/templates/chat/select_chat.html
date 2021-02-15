@@ -1,0 +1,120 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>Chat Room</title>
+
+    <style>
+
+        body{
+		background-image: url('/static/image/backg.jpg');
+		background-size:cover;
+		background-attachment: fixed;
+	    }
+
+        .message_screen {
+            padding-top: 17%;
+            padding-left:21%;
+            margin-left: 40vh;
+            margin-top: 1vh;
+            border: 1px solid black;
+            resize: none;
+            border-radius: 5px;
+            width: 665px;
+            background-color: rgba(255, 255, 255, 0.644);
+            height: 485px;
+            overflow: auto;
+            
+
+        }
+
+        .message_input {
+            margin-top: 2vh;
+            margin-left: 40vh;
+            height: 30px;
+            overflow: hidden;
+            resize: none;
+            border: 1px solid black;
+            border-radius: 5px;
+
+        }
+
+
+        .submit_button {
+            margin-top:2vh;
+            border-radius: 10%;
+            background-color: rgb(4, 110, 248);
+            width: 45px;
+            padding-top:5s;
+            border: 1px solid white;
+            margin-left: 2px;
+            height: 30px;
+
+        }
+        
+        .friends_list{
+            margin-top:1vh;
+            margin-left: 5vh;
+            border: 1px solid black;
+            resize: none;
+            border-radius: 5px;
+            width: 300px;
+            height: 485px;
+            background-color: rgba(255, 255, 255, 0.644);
+            overflow:auto;
+            
+        }
+
+        .partners_list {
+            background-color:white;
+            border:1px solid black;
+            border-radius: 5px;
+            margin: 5px;
+            padding: 5px;
+            padding-top: 10px;
+            overflow: auto;
+            
+            
+        }
+        .partners_list:hover {background:  rgb(4, 110, 248);; color: #fff;}
+
+        </style>
+        
+        
+        
+</head>
+<body>
+    <div class='body'>
+        <div class='d-inline-flex'>
+            <div class='message_screen' id="chat-log">
+                    <p>Select a chat</p>
+            </div>
+            <!--а сюда отображение друзей и это в случае если их нет-->
+            <div class='friends_list' id='friends'>
+                    {% for reciever, reciever_id in list_of_recievers %}
+                    {% if request.user.id < reciever %}
+                    <div class='partners_list d-flex flex-column align-items-center' onclick="location.href='http://127.0.0.1:8000/chat/{{request.user.id}}{{reciever_id}}'">
+                        <p>{{reciever}}</p>
+                    </div>
+                    {% else %}
+                    <div class='partners_list d-flex flex-column align-items-center' onclick="location.href='http://127.0.0.1:8000/chat/{{reciever_id}}{{request.user.id}}'">
+                        <p>{{reciever}}</p>
+                    </div>
+                    {% endif %}
+                    {% endfor %}
+                    
+            </div>
+        </div>
+        <div class='d-flex flex-row'>
+            <textarea class='message_input'id="chat-message-input{{request.user.id}}" cols='74' placeholder='Type your message here..' maxlength="150" ></textarea>
+            <button class ='submit_button' id="chat-message-submit" type="button" value="Send">
+            <span class="material-icons submit_button_picture">send</span>
+        </div>
+    </div>
+
+{% endblock content %}

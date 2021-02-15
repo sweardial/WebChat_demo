@@ -1,0 +1,40 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Icons"
+      rel="stylesheet">
+  <title>DmChat</title>
+</head>
+<body>
+
+{% include 'snippets/base_css.html' %}
+{% include 'snippets/base_js.html' %}
+{% include 'snippets/header.html' %}
+
+
+<style type="text/css">
+  .main{
+    min-height: 100vh;
+    height: 100%;
+    }
+</style>
+<div class="main">
+  {% block content %} 
+
+        
+  {% endblock content %}
+</div>
+
+  {% include 'snippets/footer.html' %}
+ 
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+  <script src="{% static 'bootstrap/js/bootstrap.bundle.min.js' %}"></script> 
+</body>
+</html>
+
+
