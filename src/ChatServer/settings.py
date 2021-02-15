@@ -20,7 +20,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'c7!=adp_e(xm#bm5yzizgkjb#y32o+b%9peh88zc$v=%3vofv+'
+SECRET_KEY = 'secret'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -86,9 +86,9 @@ ASGI_APPLICATION = "ChatServer.asgi.application"
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
-DB_NAME = "coding1"
-DB_USER = "django"
-DB_PASSWORD = "123"
+DB_NAME = "secret"
+DB_USER = "secret"
+DB_PASSWORD = "secret"
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
@@ -96,7 +96,7 @@ DATABASES = {
         'USER': DB_USER,
         'PASSWORD': DB_PASSWORD,
         'HOST': 'localhost',
-        'PORT': '5432',
+        'PORT': 'secret',
     }
 }
 
@@ -104,7 +104,7 @@ CHANNEL_LAYERS = {
     'default': {
         'BACKEND': 'channels_redis.core.RedisChannelLayer',
         'CONFIG': {
-            "hosts": [('127.0.0.1', 6379)],
+            "hosts": [('secret', 0000)],
         },
     },
 }
@@ -155,4 +155,4 @@ MEDIA_URL = '/media/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static_cdn')
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media_cdn')
 
-BASE_URL = 'https://127.0.0.1:8000'
+BASE_URL = 'sercret'
