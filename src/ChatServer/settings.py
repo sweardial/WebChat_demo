@@ -87,7 +87,7 @@ ASGI_APPLICATION = "ChatServer.asgi.application"
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
 DB_NAME = "secret"
-DB_USER = "django"
+DB_USER = "secret"
 DB_PASSWORD = "secret"
 DATABASES = {
     'default': {
@@ -96,7 +96,7 @@ DATABASES = {
         'USER': DB_USER,
         'PASSWORD': DB_PASSWORD,
         'HOST': 'localhost',
-        'PORT': '5432',
+        'PORT': 'secret',
     }
 }
 
@@ -104,7 +104,7 @@ CHANNEL_LAYERS = {
     'default': {
         'BACKEND': 'channels_redis.core.RedisChannelLayer',
         'CONFIG': {
-            "hosts": [('127.0.0.1', 0000)],
+            "hosts": [('secret', 0000)],
         },
     },
 }
@@ -155,4 +155,4 @@ MEDIA_URL = '/media/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static_cdn')
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media_cdn')
 
-BASE_URL = 'https://127.0.0.1:8000'
+BASE_URL = 'sercret'
